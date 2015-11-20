@@ -54,12 +54,12 @@ class BlogController extends Controller
         return $this->render('index');
     }
 
-    public function actionUserblog($id)
+    public function actionUserblog($userid = 0)
     {
         return $this->render('userblog');
     }
 
-    public function actionView($userid,$id)
+    public function actionView($userid = 0,$id = 0,$viewid)
     {
         return $this->render('view');
     }

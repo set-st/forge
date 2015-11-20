@@ -31,9 +31,14 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                '/blog/<userid:\d+>/<id:\d+>' => 'blog/view',
-                '/blog/<id:\d+>' => 'blog/userblog',
+                //userblogs
+                '/blog/user_<userid:\d+>' => 'blog/userblog',
+                '/blog/user_<userid:\d+>/<id:\d+>' => 'blog/userblog',
+                '/blog/user_<userid:\d+>/<id:\d+>/view_<viewid:\d+>' => 'blog/view',
+                //globalblogs
                 '/blog' => 'blog/index',
+                '/blog/<userid:\d+>' => 'blog/userblog',
+                '/blog/view_<viewid:\d+>' => 'blog/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<action>'=>'site/<action>',
