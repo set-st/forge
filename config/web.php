@@ -34,12 +34,12 @@ $config = [
                 '' => 'site/index',
                 //userblogs
                 '/blog/user_<userid:\d+>' => 'blog/userblog',
-                '/blog/user_<userid:\d+>/<id:\d+>' => 'blog/userblog',
-                '/blog/user_<userid:\d+>/<id:\d+>/view_<viewid:\d+>' => 'blog/view',
+                '/blog/user_<userid:\d+>/<catid:\d+>' => 'blog/userblog',
+                '/blog/user_<userid:\d+>/<catid:\d+>/read_<viewid:\d+>' => 'blog/view',
                 //globalblogs
                 '/blog' => 'blog/index',
-                '/blog/<userid:\d+>' => 'blog/userblog',
-                '/blog/view_<viewid:\d+>' => 'blog/view',
+                '/blog/<catid:\d+>' => 'blog/userblog',
+                '/blog/<catid:\d+>/read_<viewid:\d+>' => 'blog/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<action>'=>'site/<action>',
@@ -72,6 +72,11 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+    ],
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+        ],
     ],
     'params' => $params,
 ];

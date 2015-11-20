@@ -60,4 +60,17 @@ class BlogRecords extends \yii\db\ActiveRecord
         return $this->hasOne(BlogCategories::className(), ['id' => 'category_id']);
     }
 
+    public function getUrl(){
+        $out = ['/blog'];
+        if($this->author_id != 0){
+            $out[] = 'user_'.$this->author_id;
+        }
+        if($this->category_id != 0){
+            $out[] = $this->category_id;
+        }
+        $out[] = 'read_'.$this->id;
+
+        return implode("/", $out);
+    }
+
 }

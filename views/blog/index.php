@@ -18,13 +18,13 @@ $this->params['breadcrumbs'] = [
         <div id="post-slider" class="flexslider post-slider-slides">
             <ul class="slides">
                 <li>
-                    <img src="img/dummies/blog/img1.jpg" alt="" />
+                    <img src="/img/dummies/blog/img1.jpg" alt="" />
                 </li>
                 <li>
-                    <img src="img/dummies/blog/img2.jpg" alt="" />
+                    <img src="/img/dummies/blog/img2.jpg" alt="" />
                 </li>
                 <li>
-                    <img src="img/dummies/blog/img3.jpg" alt="" />
+                    <img src="/img/dummies/blog/img3.jpg" alt="" />
                 </li>
             </ul>
         </div>
@@ -37,10 +37,10 @@ $this->params['breadcrumbs'] = [
         <ul class="meta-post">
             <li><i class="icon-calendar"></i><a href="#"> <?=$record->date?></a></li>
             <li><i class="icon-user"></i><a href="#"> <?=$record->author_id?></a></li>
-            <li><i class="icon-folder-open"></i><a href="#"> <?=$record->categories->title?></a></li>
+            <li><i class="icon-folder-open"></i><a href="<?=$record->categories->getUrl()?>"> <?=$record->categories->title?></a></li>
             <li><i class="icon-comments"></i><a href="#">0 Comments</a></li>
         </ul>
-        <a href="#" class="pull-right"><?=Yii::t('app', 'Continue reading')?> <i class="icon-angle-right"></i></a>
+        <a href="<?=$record->getUrl()?>" class="pull-right"><?=Yii::t('app', 'Continue reading')?> <i class="icon-angle-right"></i></a>
     </div>
 </article>
 <?php }?>

@@ -66,4 +66,18 @@ class BlogCategories extends \yii\db\ActiveRecord
         return $out;
     }
 
+    /**
+     * Generate current category url
+     * @return string
+     */
+    public function getUrl(){
+        $out = ['/blog'];
+        if($this->user_id != 0){
+            $out[] = 'user_'.$this->user_id;
+        }
+        $out[] = $this->id;
+
+        return implode("/", $out);
+    }
+
 }

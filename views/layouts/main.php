@@ -53,7 +53,8 @@ AppAsset::register($this);
 		echo Nav::widget([
 		    'options' => ['class' => 'nav navbar-nav'],
 		    'items' => [
-		        ['label' => 'Home', 'url' => ['/site/index']],
+		        ['label' => Yii::t('app', 'Home'), 'url' => ['/']],
+				['label' => Yii::t('app', 'Blog'), 'url' => ['/blog']],
 		        ['label' => 'About', 'url' => ['/site/about']],
 		        ['label' => 'Contact', 'url' => ['/site/contact']],
 		        Yii::$app->user->isGuest ?

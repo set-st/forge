@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\BlogCategories;
 use app\models\BlogRecords;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -52,20 +53,35 @@ class BlogController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => BlogRecords::find(['author_id' => 0]),
+            'query' => BlogRecords::find()->where(['author_id' => 0]),
             'pagination' => array('pageSize' => 12),
+            'sort'=> ['defaultOrder' => ['date'=>SORT_DESC]]
         ]);
         return $this->render('index', ['records' => $dataProvider, 'pagination'=>$dataProvider->pagination]);
     }
 
-    public function actionUserblog($userid = 0)
+    public function actionUserblog($catid = 0, $userid = 0)
     {
-        return $this->render('userblog', ['userid' => $userid]);
+        $category = [];
+        $dataProvider = new ActiveDataProvider([
+            'query' => BlogRecords::find()->where(['author_id' => $userid, 'category_id' => $catid]),
+            'pagination' => array('pageSize' => 12),
+            'sort'=> ['defaultOrder' => ['date'=>SORT_DESC]]
+        ]);
+        if($catid != 0){
+            $category = BlogCategories::findOne(['id' => $catid]);
+        }
+        return $this->render('userblog', ['records' => $dataProvider, 'pagination'=>$dataProvider->pagination, 'category' => $category]);
     }
 
-    public function actionView($userid = 0, $id = 0, $viewid)
+    public function actionView($userid = 0, $catid = 0, $viewid)
     {
-        return $this->render('view', ['userid' => $userid, 'id' => $id, 'viewid' => $viewid]);
+        $category = [];
+        $read = BlogRecords::findOne(['id' => $viewid]);
+        if($catid != 0){
+            $category = BlogCategories::findOne(['id' => $catid]);
+        }
+        return $this->render('view', ['record' => $read, 'userid' => $userid, 'category' => $category]);
     }
 
 }
