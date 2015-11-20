@@ -11,4 +11,7 @@ return [
     'Blogs' => 'Блоги',
     'User`s blog' => 'Блог пользователя',
     'Categories' => 'Категории',
+    'First' => 'Сюда',
+    'Last' => 'Туда',
+    'Continue reading' => 'Читать далее',
 ];

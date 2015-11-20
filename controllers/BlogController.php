@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\BlogRecords;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class BlogController extends Controller
 {
@@ -51,17 +51,21 @@ class BlogController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider([
+            'query' => BlogRecords::find(['author_id' => 0]),
+            'pagination' => array('pageSize' => 12),
+        ]);
+        return $this->render('index', ['records' => $dataProvider, 'pagination'=>$dataProvider->pagination]);
     }
 
     public function actionUserblog($userid = 0)
     {
-        return $this->render('userblog');
+        return $this->render('userblog', ['userid' => $userid]);
     }
 
-    public function actionView($userid = 0,$id = 0,$viewid)
+    public function actionView($userid = 0, $id = 0, $viewid)
     {
-        return $this->render('view');
+        return $this->render('view', ['userid' => $userid, 'id' => $id, 'viewid' => $viewid]);
     }
 
 }

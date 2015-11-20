@@ -54,4 +54,10 @@ class BlogRecords extends \yii\db\ActiveRecord
             'date' => Yii::t('app', 'Date'),
         ];
     }
+
+    public function getCategories()
+    {
+        return $this->hasOne(BlogCategories::className(), ['id' => 'category_id']);
+    }
+
 }

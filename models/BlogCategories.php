@@ -56,7 +56,7 @@ class BlogCategories extends \yii\db\ActiveRecord
         $out = [];
         $categories = self::findAll(['parent_id' => $parent, 'user_id' => $user_id]);
         foreach($categories as $category){
-            $count = BlogRecords::find(['category_id' => $category->id, 'author_id' => $category->user_id])->count();
+            $count = BlogRecords::find()->where(['category_id' => $category->id, 'author_id' => $category->user_id])->count();
             $out[$category->id] = ['title' => $category->title, 'user_id' => $category->user_id, 'records_count' => (int)$count];
             $childs = self::getCategoriesTree($category->id, $user_id);
             if(!empty($childs)){

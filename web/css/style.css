@@ -1262,6 +1262,15 @@ ul.meta-post li a{
 
 /* --- pagination --- */
 
+#pagination {
+	margin: 0px;
+}
+
+#pagination li {
+	display: inline-block;
+	list-style: none;
+}
+
 #pagination a,
 #pagination span {
     display: block;
@@ -1274,12 +1283,18 @@ ul.meta-post li a{
 	font-weight:600;
 }
 
+#pagination span div, #pagination a div {
+	display: inline-block;
+	font-size: 40px;
+	vertical-align: -6px;
+}
+
 #pagination a:hover {
     color: #fff;
 	text-decoration:none;
 }
 
-#pagination span.current {
+#pagination li.active a {
     background: #333;
     color: #fff;
     font-weight: bold;
