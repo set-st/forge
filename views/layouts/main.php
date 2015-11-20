@@ -19,7 +19,12 @@ AppAsset::register($this);
 <head>
 <meta charset="utf-8">
 <?= Html::csrfMetaTags() ?>
-<title><?= Html::encode($this->title) ?></title>
+<title>
+	<?=Yii::$app->name?>
+	<?php if(!empty($this->title)){
+		echo ' / '.Html::encode($this->title);
+	}?>
+</title>
 <?php $this->head() ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
