@@ -1678,6 +1678,10 @@ a.scrollup i:hover {
 18. Position & alignment
 ============================= */
 
+.cat .cat{
+	margin-left: 20px;
+}
+
 .absolute{
 	position:absolute;
 }

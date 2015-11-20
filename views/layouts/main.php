@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -10,7 +7,12 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+\Yii::$app->language = 'ru-RU';
+
 ?>
+
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -62,8 +64,12 @@ AppAsset::register($this);
 		?>
 	</header>
 	<!-- end header -->
+	
+	<?= $content ?>
 
-	<?php include('blog.php'); ?>
+	<?php //$this->beginContent('@app/views/layouts/blog_.php'); ?>
+	<?php //$this->endContent(); ?>
+
 
 	<footer>
 	<div class="container">
