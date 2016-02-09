@@ -49,8 +49,42 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            //'class' => 'yii\rbac\PhpManager',
+        ],
+        'authClientCollection' => [
+            'class' => yii\authclient\Collection::className(),
+            'clients' => [
+                'facebook' => [
+                    'class'        => 'dektrium\user\clients\Facebook',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+                'twitter' => [
+                    'class'          => 'dektrium\user\clients\Twitter',
+                    'consumerKey'    => 'CONSUMER_KEY',
+                    'consumerSecret' => 'CONSUMER_SECRET',
+                ],
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+                'yandex' => [
+                    'class'        => 'dektrium\user\clients\Yandex',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET'
+                ],
+                'vkontakte' => [
+                    'class'        => 'dektrium\user\clients\VKontakte',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ]
+            ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -76,6 +110,50 @@ $config = [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'admins' => ['Stanislav'],
+            'controllerMap' => [
+                'admin' => [
+                    'class' => 'dektrium\user\controllers\AdminController',
+                    'layout' => '@app/views\layouts\user\admin',
+                ],
+                'settings' => [
+                    'class' => 'dektrium\user\controllers\SettingsController',
+                    'layout' => '@app/views\layouts\user\settings',
+                ],
+                'registration' => [
+                    'class' => 'dektrium\user\controllers\RegistrationController',
+                    'layout' => '@app/views\layouts\user\login',
+                ],
+                'recovery' => [
+                    'class' => 'dektrium\user\controllers\RecoveryController',
+                    'layout' => '@app/views\layouts\user\login',
+                ],
+                'security' => [
+                    'class' => 'dektrium\user\controllers\SecurityController',
+                    'layout' => '@app/views\layouts\user\login',
+                ],
+            ],
+        ],
+        'rbac' => [
+            'class' => 'dektrium\rbac\Module',
+            'controllerMap' => [
+                'role' => [
+                    'class' => 'dektrium\rbac\controllers\RoleController',
+                    'layout' => '@app/views\layouts\user\admin',
+                ],
+                'item' => [
+                    'class' => 'dektrium\rbac\controllers\ItemController',
+                    'layout' => '@app/views\layouts\user\admin',
+                ],
+                'permission' => [
+                    'class' => 'dektrium\rbac\controllers\PermissionController',
+                    'layout' => '@app/views\layouts\user\admin',
+                ],
+                'assignment' => [
+                    'class' => 'dektrium\user\controllers\AssignmentController',
+                    'layout' => '@app/views\layouts\user\admin',
+                ],
+            ],
         ],
     ],
     'params' => $params,
